@@ -9,3 +9,13 @@ function showError(){
 
 
 getPurcEl.addEventListener("click", showError)
+
+let largeCountries = ["Tuvalu", "India", "USA", "Indonesia", "Monaco"]
+// fix this in the above: China and Pakistan
+
+largeCountries.pop()
+largeCountries.shift()
+largeCountries.push("Pakistan")
+largeCountries.unshift("China")
+
+console.log(largeCountries);
