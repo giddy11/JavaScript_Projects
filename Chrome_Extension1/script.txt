@@ -1,0 +1,106 @@
+const saveBtn = document.getElementById("input-btn")
+const delBtn = document.getElementById("delete-btn")
+
+const inputEl = document.getElementById("input-el")
+let ulEl = document.getElementById("ul-el")
+let container = document.getElementById("container")
+const buyBtn = document.getElementById("buy-btn")
+
+// let myLeads = ["www.awesomelead.com", "www.epiclead.com", "www.greatlead.com"]
+let myLeads = []
+let listItems = ""
+
+const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
+console.log(leadsFromLocalStorage);
+
+if (leadsFromLocalStorage){
+    myLeads = leadsFromLocalStorage
+    renderLeads()
+}
+
+
+saveBtn.addEventListener("click", function(){
+    myLeads.push(inputEl.value)
+    inputEl.value = ""
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
+    renderLeads()
+    // console.log(myLeads);
+    console.log(localStorage.getItem("myLeads"));
+})
+
+delBtn.addEventListener("click", function(){
+    localStorage.clear()
+    myLeads = []
+    renderLeads()
+    
+})
+
+function buy(){
+    container.innerHTML += "<p>Thank you<p/>"
+    console.log(9);
+}
+
+function renderLeads(){
+    listItems = ""
+    for (let i = 0; i < myLeads.length; i++){
+        // listItems += "<li><a href='#'>" + myLeads[i] + "</a></li>"
+        // listItems += "<li><a target='_blank' href='" + myLeads[i] + "'>" + myLeads[i] + "</a></li>"
+        /* Template string */
+        listItems += `
+            <li>
+                <a target='_blank' href='${myLeads[i]}'>
+                    ${myLeads[i]}
+                </a>
+            </li>
+        `
+    }
+    ulEl.innerHTML = listItems
+}
+
+// function renderLeads(){
+//     ulEl.innerHTML = ""
+
+//     for (let i = 0; i < myLeads.length; i++){
+//         const li = document.createElement("li")
+//         li.textContent = myLeads[i]
+//         ulEl.append(li)
+//     }
+// }
+
+
+// for (let i = 0; i < myLeads.length; i++){
+//     ulEl.innerHTML += "<li>" + myLeads[i] + "</li>"
+// }
+
+// for (let i = 0; i < myLeads.length; i++){
+//     listItems += "<li>" + myLeads[i] + "</li>"
+//     console.log(count);
+//     count++
+// }
+// ulEl.innerHTML = listItems
+
+
+
+
+// for (let i = 0; i < myLeads.length; i++){
+//     const li = document.createElement("li")
+//     li.textContent = myLeads[i]
+//     ulEl.append(li)
+// }
+
+// for (let i = 0; i < myLeads.length; i++){
+//     //create element
+//     //set text element
+//     //append to ul
+//     const li = document.createElement("li")
+//     li.textContent = myLeads[i]
+//     ulEl.append(li)
+// }
+
+container.innerHTML = '<button onClick="buy()">Buy</button>'
+
+
+
+// getSubBtn.addEventListener("click", Sub)
+// getDivBtn.addEventListener("click", Div)
+// getMulBtn.addEventListener("click", Mul)
